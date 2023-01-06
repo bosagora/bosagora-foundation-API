@@ -1,0 +1,12 @@
+.idea
+.git
+.gitignore
+.dockerignore
+Dockerfile
+node_modules/
+artifacts/
+cache/
+typechain/
+logs/
+db/
+
