@@ -18,7 +18,6 @@ export class SupplyAPIScheduler extends Scheduler {
     private readonly BountyAddress: string;
     private readonly TeamMemberAddress: string;
     private readonly BurnAddress: string;
-    private readonly TokenContractAddress: string;
     private readonly CommonsBudgetAddress: string; // Agora mainnet
     private readonly HoledAirdropAddress: Array<string>;
 
@@ -37,7 +36,6 @@ export class SupplyAPIScheduler extends Scheduler {
         this.TeamMemberAddress = "0xabf16eafac1f269a97935b4e3f7e158b61ead3f3";
         this.BurnAddress = "0x000000000000000000000000000000000000dead";
         this.CommonsBudgetAddress = "0x71D208bfd49375285301343C719e1EA087c87b43";
-        this.TokenContractAddress = "0x746dda2ea243400d5a63e0700f190ab79f06489e";
 
         this.HoledAirdropAddress = [
             "0x2e650da344c6fa949962a139cbde6f411b369aba",
@@ -77,8 +75,6 @@ export class SupplyAPIScheduler extends Scheduler {
             console.log(`TeamMemberBalance: ${TeamMemberBalance}`);
             const BurnedBalance = BigNumber.from(await this.BOAcontract.balanceOf(this.BurnAddress));
             console.log(`BurnedBalance: ${BurnedBalance}`);
-            const TokenContractBalance = BigNumber.from(await this.BOAcontract.balanceOf(this.TokenContractAddress));
-            console.log(`TokenContractBalance: ${TokenContractBalance}`);
 
             let HoledAirdropBalance: BigNumber = BigNumber.from("0");
 
@@ -109,7 +105,6 @@ export class SupplyAPIScheduler extends Scheduler {
                     .add(TeamMemberBalance)
                     .add(HoledAirdropBalance)
                     .add(CommonsBudgetBalance)
-                    .add(TokenContractBalance)
             );
 
             if (TotalSupply.gte(BigNumber.from(storage.totalSupply))) {
