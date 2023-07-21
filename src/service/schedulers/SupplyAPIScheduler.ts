@@ -122,7 +122,7 @@ export class SupplyAPIScheduler extends Scheduler {
     private async getRewardBalance(): Promise<any> {
         const client: PoolClient = await pool.connect();
 
-        const SQL = "SELECT SUM(balance) - SUM(balanceactivation) as reward FROM public.validators";
+        const SQL = "SELECT (SUM(balance) + SUM(withdrawal)) - SUM(balanceactivation) as reward FROM public.validators";
         try {
             const res = await client.query(SQL);
             let reward;
