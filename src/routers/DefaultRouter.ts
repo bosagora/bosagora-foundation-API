@@ -117,6 +117,10 @@ export class DefaultRouter {
                         address: "0xabf16eafac1f269a97935b4e3f7e158b61ead3f3",
                         balance: new Amount(BigNumber.from(items[0].team_member), 7).toBOAString(),
                     },
+                    bridge_liquidity: {
+                        address: "",
+                        balance: 0,
+                    },
                     dwf: {
                         address: "0x12eC499895590898FDf92CA71AcEcCfF33C257C0",
                         balance: new Amount(BigNumber.from(items[0].dwf), 7).toBOAString(),

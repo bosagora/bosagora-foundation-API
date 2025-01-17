@@ -209,7 +209,7 @@ export class SupplyScheduler extends Scheduler {
         const CirculatingSupply = TotalSupply.sub(
             FoundationBalance.add(Marketing2Balance)
                 .add(BountyBalance)
-                .add(this.BridgeLiquidity)
+                // .add(this.BridgeLiquidity)
                 // .add(this.BridgeFoundationLiquidity)
                 .add(TeamMemberBalance)
                 .add(HoledAirdropBalance)
