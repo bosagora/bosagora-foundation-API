@@ -6,13 +6,6 @@
         (
             "sequence" BIGINT generated always as identity,
             "initial_supply" BIGINT NOT NULL,
-            "foundation" BIGINT NOT NULL,
-            "marketing1" BIGINT NOT NULL,
-            "marketing2" BIGINT NOT NULL,
-            "bounty" BIGINT NOT NULL,
-            "team_member" BIGINT NOT NULL,
-            "dwf" BIGINT NOT NULL,
-            "hold_airdrop" BIGINT NOT NULL,
             "burned" BIGINT NOT NULL,
             "reward" BIGINT NOT NULL,
             "commons_budget" BIGINT NOT NULL,

@@ -37,13 +37,6 @@ export class SupplyStorage extends Storage {
         return new Promise<void>(async (resolve, reject) => {
             this.queryForMapper("supply", "postSupply", {
                 initial_supply: data.initial_supply.toString(),
-                foundation: data.foundation.toString(),
-                marketing1: data.marketing1.toString(),
-                marketing2: data.marketing2.toString(),
-                bounty: data.bounty.toString(),
-                team_member: data.team_member.toString(),
-                dwf: data.dwf.toString(),
-                hold_airdrop: data.hold_airdrop.toString(),
                 burned: data.burned.toString(),
                 reward: data.reward.toString(),
                 commons_budget: data.commons_budget.toString(),
@@ -69,13 +62,6 @@ export class SupplyStorage extends Storage {
                             return {
                                 sequence: BigInt(m.sequence),
                                 initial_supply: BigInt(m.initial_supply),
-                                foundation: BigInt(m.foundation),
-                                marketing1: BigInt(m.marketing1),
-                                marketing2: BigInt(m.marketing2),
-                                bounty: BigInt(m.bounty),
-                                team_member: BigInt(m.team_member),
-                                dwf: BigInt(m.dwf),
-                                hold_airdrop: BigInt(m.hold_airdrop),
                                 burned: BigInt(m.burned),
                                 reward: BigInt(m.reward),
                                 commons_budget: BigInt(m.commons_budget),

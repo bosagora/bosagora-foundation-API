@@ -97,48 +97,9 @@ export class DefaultRouter {
                         address: "",
                         balance: new Amount(BigNumber.from(items[0].initial_supply), 7).toBOAString(),
                     },
-                    foundation: {
-                        address: "0x2529379ac2c209058adf4c28f2c963878ea5e7bd",
-                        balance: new Amount(BigNumber.from(items[0].foundation), 7).toBOAString(),
-                    },
-                    marketing1: {
-                        address: "0x8f4FCe6B4a7a16CEDb8Eb8fCd732360AA310853a",
-                        balance: new Amount(BigNumber.from(items[0].marketing1), 7).toBOAString(),
-                    },
-                    marketing2: {
-                        address: "0x4327bb17a6408d8ff94c7be88c20c521ad85d6d7",
-                        balance: new Amount(BigNumber.from(items[0].marketing2), 7).toBOAString(),
-                    },
-                    bounty: {
-                        address: "0x30e5794f87003b15a40827be2cc1c2ae4bc79435",
-                        balance: new Amount(BigNumber.from(items[0].bounty), 7).toBOAString(),
-                    },
-                    team_member: {
-                        address: "0xabf16eafac1f269a97935b4e3f7e158b61ead3f3",
-                        balance: new Amount(BigNumber.from(items[0].team_member), 7).toBOAString(),
-                    },
                     bridge_liquidity: {
                         address: "",
                         balance: 0,
-                    },
-                    dwf: {
-                        address: "0x12eC499895590898FDf92CA71AcEcCfF33C257C0",
-                        balance: new Amount(BigNumber.from(items[0].dwf), 7).toBOAString(),
-                    },
-                    hold_airdrop: {
-                        address: [
-                            "0x2e650da344c6fa949962a139cbde6f411b369aba",
-                            "0x28fbb415dffc0c7540c4b6688e765cfec7ba24d8",
-                            "0x0252105a98fdf29d1fbe8cba619d4b8ec07d4c2c",
-                            "0x631302f2d5d7d41970186023e1a47a7a249fdc14",
-                            "0xf8c69c2b6731e0ab4072272613c0da9d2881bc4c",
-                            "0xc9a3b7810a9089716800ff3748ef02659b42b52c",
-                            "0xd02d41853ad45adce2efce07d5f0982091cf4c6f",
-                            "0xd62ad9fd3b34813ce5652f04551d6510d09bc75d",
-                            "0x82394244b86241ef776ccd9948cea0e5dd1f62f8",
-                            "0x02e5633f50d89854c6734cade0c9f1b0dc75ce5e",
-                        ],
-                        balance: new Amount(BigNumber.from(items[0].hold_airdrop), 7).toBOAString(),
                     },
                     burned: {
                         address: "0x000000000000000000000000000000000000dead",

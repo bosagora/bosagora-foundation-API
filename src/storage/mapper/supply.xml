@@ -5,13 +5,6 @@
         INSERT INTO supply
         (
             "initial_supply"        ,
-            "foundation"            ,
-            "marketing1"            ,
-            "marketing2"            ,
-            "bounty"                ,
-            "team_member"           ,
-            "dwf"                   ,
-            "hold_airdrop"          ,
             "burned"                ,
             "reward"                ,
             "commons_budget"        ,
@@ -22,13 +15,6 @@
         VALUES
         (
             #{initial_supply}       ,
-            #{foundation}           ,
-            #{marketing1}           ,
-            #{marketing2}           ,
-            #{bounty}               ,
-            #{team_member}          ,
-            #{dwf}                  ,
-            #{hold_airdrop}         ,
             #{burned}               ,
             #{reward}               ,
             #{commons_budget}       ,
