@@ -108,7 +108,7 @@ export class SupplyScheduler extends Scheduler {
         }
 
         const BridgeBalanceETH = BigNumber.from(await this.getBOATokenContract().balanceOf(this.BridgeAddress));
-        this.writeBalance("  BridgeBalance", BridgeBalanceETH);
+        this.writeBalance("  BridgeBalanceETH", BridgeBalanceETH);
         if (this.isTerminating()) {
             logger.info("Terminated");
             return;
@@ -141,15 +141,32 @@ export class SupplyScheduler extends Scheduler {
             logger.info("Terminated");
             return;
         }
-
         const TotalSupply = BigNumber.from(await this.getBOATokenContract().totalSupply()).sub(BurnedBalance);
+
+        const startTimeStamp = 1770595200
+        const endTimeStamp = 1771718400
+
+        const nowTimeStamp = Math.floor((new Date()).getTime()/1000);
+        const CorrectionAmount = BigNumber.from(407983838-42125702).mul(BigNumber.from(10 ** 7));
+
+        let CirculatingSupply = TotalSupply.sub(BridgeBalanceETH);
+
+        if (nowTimeStamp > endTimeStamp) {
+        } else {
+            if (nowTimeStamp > startTimeStamp) {
+                const t = BigNumber.from(endTimeStamp - startTimeStamp);
+                const e = BigNumber.from(endTimeStamp - nowTimeStamp);
+                console.log(2, t.toString(), e.toString());
+                CirculatingSupply = CirculatingSupply.sub(CorrectionAmount.mul(e).div(t));
+            } else {
+                CirculatingSupply = CirculatingSupply.sub(CorrectionAmount);
+            }
+        }
+
         if (this.isTerminating()) {
             logger.info("Terminated");
             return;
         }
-
-        const CirculatingSupply = TotalSupply.sub(BridgeBalanceETH);
-
         await this.supply_storage.postSupply({
             initial_supply: this.InitialSupply.toBigInt(),
             burned: BurnedBalance.toBigInt(),
