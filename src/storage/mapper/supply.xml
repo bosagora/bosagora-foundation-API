@@ -6,6 +6,8 @@
         (
             "initial_supply"        ,
             "burned"                ,
+            "bridgeBOA"             ,
+            "bridgeETH"             ,
             "reward"                ,
             "commons_budget"        ,
             "total_supply"          ,
@@ -16,6 +18,8 @@
         (
             #{initial_supply}       ,
             #{burned}               ,
+            #{bridgeBOA}            ,
+            #{bridgeETH}            ,
             #{reward}               ,
             #{commons_budget}       ,
             #{total_supply}         ,

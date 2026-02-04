@@ -38,6 +38,8 @@ export class SupplyStorage extends Storage {
             this.queryForMapper("supply", "postSupply", {
                 initial_supply: data.initial_supply.toString(),
                 burned: data.burned.toString(),
+                bridgeBOA: data.bridgeBOA.toString(),
+                bridgeETH: data.bridgeETH.toString(),
                 reward: data.reward.toString(),
                 commons_budget: data.commons_budget.toString(),
                 total_supply: data.total_supply.toString(),
@@ -63,6 +65,8 @@ export class SupplyStorage extends Storage {
                                 sequence: BigInt(m.sequence),
                                 initial_supply: BigInt(m.initial_supply),
                                 burned: BigInt(m.burned),
+                                bridgeBOA: BigInt(m.bridgeBOA),
+                                bridgeETH: BigInt(m.bridgeETH),
                                 reward: BigInt(m.reward),
                                 commons_budget: BigInt(m.commons_budget),
                                 total_supply: BigInt(m.total_supply),

@@ -7,6 +7,8 @@
             "sequence" BIGINT generated always as identity,
             "initial_supply" BIGINT NOT NULL,
             "burned" BIGINT NOT NULL,
+            "bridgeBOA" BIGINT NOT NULL,
+            "bridgeETH" BIGINT NOT NULL,
             "reward" BIGINT NOT NULL,
             "commons_budget" BIGINT NOT NULL,
             "total_supply" BIGINT NOT NULL,

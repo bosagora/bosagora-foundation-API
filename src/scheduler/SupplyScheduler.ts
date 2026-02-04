@@ -18,6 +18,7 @@ export class SupplyScheduler extends Scheduler {
 
     private BurnAddress = "0x000000000000000000000000000000000000dead";
     private CommonsBudgetAddress = "0x71D208bfd49375285301343C719e1EA087c87b43";
+    private BridgeAddress = "0x9E825445477dBAFb87Ae0540D3A058CC96D0AB69";
 
     constructor(expression: string) {
         super(expression);
@@ -76,7 +77,7 @@ export class SupplyScheduler extends Scheduler {
 
     private getBOATokenContract(): ethers.Contract {
         const abi = JSON.parse(fs.readFileSync("./src/abi/ERC20.json", "utf8"));
-        return new ethers.Contract("0x51bD4f39803fcAEFf3ef45aae2C3aaFf0B9faDcb", abi, this.getETHProvider());
+        return new ethers.Contract("0xc65a680ed408ff0987a4f751f1999c96db597482", abi, this.getETHProvider());
     }
 
     public async onStart() {
@@ -106,7 +107,24 @@ export class SupplyScheduler extends Scheduler {
             return;
         }
 
-        // Agora mainnet
+        const BridgeBalanceETH = BigNumber.from(await this.getBOATokenContract().balanceOf(this.BridgeAddress));
+        this.writeBalance("  BridgeBalance", BridgeBalanceETH);
+        if (this.isTerminating()) {
+            logger.info("Terminated");
+            return;
+        }
+
+
+        // BOSagora mainnet
+        const BridgeBalanceBOA = (await this.getBOAProvider().getBalance(this.BridgeAddress)).div(BigNumber.from(10 ** 11));
+        this.writeBalance("  BridgeBalanceBOA", BridgeBalanceBOA);
+        if (this.isTerminating()) {
+            logger.info("Terminated");
+            return;
+        }
+
+
+        // BOSagora mainnet
         let CommonsBudgetBalance = await this.getBOAProvider().getBalance(this.CommonsBudgetAddress);
         CommonsBudgetBalance = CommonsBudgetBalance.div(BigNumber.from(10 ** 11));
         this.writeBalance("  CommonsBudgetBalance", CommonsBudgetBalance);
@@ -115,7 +133,7 @@ export class SupplyScheduler extends Scheduler {
             return;
         }
 
-        // Agora Scan DB
+        // BOSagora Scan DB
         let RewardBalance = await this.agora_scan_storage.getReward();
         RewardBalance = RewardBalance.div(BigNumber.from(10 ** 2));
         this.writeBalance("  RewardBalance", RewardBalance);
@@ -130,11 +148,13 @@ export class SupplyScheduler extends Scheduler {
             return;
         }
 
-        const CirculatingSupply = this.InitialSupply.add(RewardBalance).sub(BurnedBalance);
+        const CirculatingSupply = TotalSupply.sub(BridgeBalanceETH);
 
         await this.supply_storage.postSupply({
             initial_supply: this.InitialSupply.toBigInt(),
             burned: BurnedBalance.toBigInt(),
+            bridgeBOA: BridgeBalanceBOA.toBigInt(),
+            bridgeETH: BridgeBalanceETH.toBigInt(),
             reward: RewardBalance.toBigInt(),
             commons_budget: CommonsBudgetBalance.toBigInt(),
             total_supply: TotalSupply.toBigInt(),
